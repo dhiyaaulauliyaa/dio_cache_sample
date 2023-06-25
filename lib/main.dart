@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/injection/service_locator.dart';
 import 'core/services/app_services_mixin.dart';
@@ -14,18 +15,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      scaffoldMessengerKey: getIt<MessengerService>().rootScaffoldMessengerKey,
-      home: Overlay(
-        initialEntries: [
-          OverlayEntry(
-            builder: (context) => const MyHomePage(
-              title: 'Flutter Demo Home Page',
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: (_, Widget? __) => MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(primarySwatch: Colors.blue),
+        scaffoldMessengerKey:
+            getIt<MessengerService>().rootScaffoldMessengerKey,
+        home: Overlay(
+          initialEntries: [
+            OverlayEntry(
+              builder: (context) => const MyHomePage(
+                title: 'Flutter Demo Home Page',
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
