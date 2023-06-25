@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'core/injection/service_locator.dart';
+import 'core/services/app_services_mixin.dart';
+import 'core/services/messenger.dart';
 
 void main() async {
   await configureDependencies();
@@ -14,10 +16,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      theme: ThemeData(primarySwatch: Colors.blue),
+      scaffoldMessengerKey: getIt<MessengerService>().rootScaffoldMessengerKey,
+      home: Overlay(
+        initialEntries: [
+          OverlayEntry(
+            builder: (context) => const MyHomePage(
+              title: 'Flutter Demo Home Page',
+            ),
+          ),
+        ],
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -31,7 +40,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with AppServicesMixin {
   int _counter = 0;
 
   void _incrementCounter() {
