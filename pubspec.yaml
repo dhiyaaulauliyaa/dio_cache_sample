@@ -56,3 +56,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/locale/
+    - assets/images/
+    - assets/svg/
+    - assets/svg/common/
