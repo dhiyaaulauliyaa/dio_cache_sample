@@ -1,6 +1,7 @@
 {
     "conventionalCommits.scopes": [
         "pubspec",
-        "core"
+        "core",
+        "makefile"
     ]
 }
